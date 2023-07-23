@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Menu {
     private String[] menuOptions = {"Exit", "List Products", "Buy Product", "Find Product", "Show Cart", "Checkout"};
+    private String[] products = {"The Knights of Malkillian", "Children of Notgnivri", "Stones of the Three Sisters", "Tales from the Vale", "The Three Elven Towers"};
     private Scanner scanner;
 
 
@@ -19,6 +20,13 @@ public class Menu {
             System.out.println("Option " + optedInt + " was selected. Not yet implemented.");
         }
 
+    }
+
+    private void printProducts() {
+        System.out.println("--Products__");
+        for (int i = 0; i < products.length; i++) {
+            System.out.println("ID" + i + ": " + products[i]);
+        }
     }
 
     public void greet() {
