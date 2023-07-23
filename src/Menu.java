@@ -14,12 +14,21 @@ public class Menu {
         printMenu();
         int optedInt = getNextIntFromUser();
 
-        if (optedInt == 0) {
-            exit();
-        } else {
-            System.out.println("Option " + optedInt + " was selected. Not yet implemented.");
+        if (optedInt == 1) {
+            printProducts();
+            printMenu();
+        }else if (optedInt == 3){
+            System.out.println("Enter the item to search for:");
+            String userEnteredItem = getNextStringLineFromUser();
+            int foundItem = findProduct(userEnteredItem);
+            if (foundItem != -1) {
+                System.out.println(userEnteredItem + " was found and its product id is " + foundItem);
+            }else{
+                System.out.println("That product was not found");
+            }
+            printMenu();
         }
-
+            exit();
     }
 
     private void printProducts() {
@@ -27,6 +36,15 @@ public class Menu {
         for (int i = 0; i < products.length; i++) {
             System.out.println("ID" + i + ": " + products[i]);
         }
+    }
+
+    private int findProduct(String searchText) {
+        for (int i = 0; i < products.length; i++) {
+            if (searchText.equals(products[i])) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void greet() {
