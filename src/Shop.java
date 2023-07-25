@@ -1,24 +1,27 @@
+import java.util.ArrayList;
 public class Shop {
-    private Product[] products;
+    private String name;
+    private ArrayList<Product> products;
 
     public Shop(){
 
     }
-    public Shop(Product[] products){
-        this.products = products.clone();
+    public Shop(String name, ArrayList<Product> products){
+        this.name = name;
+        this.products = products;
     }
 
     public void printProducts() {
         System.out.println("--Products__");
-        for (int i = 0; i < products.length; i++) {
-            System.out.println("ID" + i + ": " + products[i].getName() + " -$" + products[i].getPrice());
+        for (Product product : products) {
+            System.out.println("ID" + product.getId() + ": " + product.getName() + " - $" + product.getPrice());
         }
     }
 
     public int findProduct(String searchText) {
-        for (int i = 0; i < products.length; i++) {
-            if (searchText.equals(products[i].getName())) {
-                return i;
+        for (Product product : products) {
+            if (searchText.equals(product.getName())) {
+                return product.getId();
             }
         }
         return -1;
