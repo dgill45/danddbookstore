@@ -2,11 +2,12 @@ import java.util.Scanner;
 
 public class Menu {
     private String[] menuOptions = {"Exit", "List Products", "Buy Product", "Find Product", "Show Cart", "Checkout"};
-    private String[] products = {"The Knights of Malkillian", "Children of Notgnivri", "Stones of the Three Sisters", "Tales from the Vale", "The Three Elven Towers"};
     private Scanner scanner;
+    private Shop shop;
 
 
-    public Menu(Scanner scanner) {
+    public Menu(Shop shop, Scanner scanner) {
+        this.shop = shop;
         this.scanner = scanner;
     }
 
@@ -15,12 +16,12 @@ public class Menu {
         int optedInt = getNextIntFromUser();
 
         if (optedInt == 1) {
-            printProducts();
+            shop.printProducts();
             printMenu();
         }else if (optedInt == 3){
             System.out.println("Enter the item to search for:");
             String userEnteredItem = getNextStringLineFromUser();
-            int foundItem = findProduct(userEnteredItem);
+            int foundItem = shop.findProduct(userEnteredItem);
             if (foundItem != -1) {
                 System.out.println(userEnteredItem + " was found and its product id is " + foundItem);
             }else{
@@ -31,24 +32,10 @@ public class Menu {
             exit();
     }
 
-    private void printProducts() {
-        System.out.println("--Products__");
-        for (int i = 0; i < products.length; i++) {
-            System.out.println("ID" + i + ": " + products[i]);
-        }
-    }
 
-    private int findProduct(String searchText) {
-        for (int i = 0; i < products.length; i++) {
-            if (searchText.equals(products[i])) {
-                return i;
-            }
-        }
-        return -1;
-    }
 
     public void greet() {
-        String shopName = "T-Shirt Mart";
+        String shopName = "5e Bookstore";
         System.out.println("Hello. Please enter your name: ");
         String name = scanner.nextLine();
 
