@@ -22,4 +22,18 @@ public class Cart {
         items.add(p);
         total += p.getPrice();
     }
+    public void showDetails(){
+        System.out.println("--Cart--");
+        for (Product item : items){
+            String itemsInCartByName = item.getName();
+            double itemsInCartByPrice = item.getPrice();
+            int itemCountInCart = items.size();
+            String formatString = (String.format("Item Count: %d%nItems:%n%s: $%.2f", itemCountInCart, itemsInCartByName, itemsInCartByPrice));
+            System.out.println(formatString);
+        }
+        double postTaxTotal = total + (total * taxRate);
+        String formatString2 = String.format("Pre-Tax Total: $%.2f%nPost-Tax Total (10.00%% Tax): $%.2f", total, postTaxTotal);
+        System.out.println();
+        System.out.println(formatString2);
+    }
 }

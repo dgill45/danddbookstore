@@ -44,6 +44,13 @@ public class Menu {
                     System.out.println("That product was not found");
                 }
                 printMenu();
+            } else if (optedInt == 4){
+                if (cart.getItems().size() == 0) {
+                    System.out.println("The cart is empty. Please add at least one product to see it in the cart.");
+                } else {
+                    cart.showDetails();
+                }
+                printMenu();
             }
             optedInt = getNextIntFromUser();
         }
