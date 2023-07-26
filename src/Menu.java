@@ -22,6 +22,18 @@ public class Menu {
             if (optedInt == 1) {
                 shop.printProducts();
                 printMenu();
+            }else if (optedInt == 2){
+                System.out.println("Please enter the ID of the product " +
+                                    "you would like to purchase:");
+                int enteredId = getNextIntFromUser();
+                Product foundProduct = shop.getProductById(enteredId);
+                if (foundProduct != null){
+                    cart.addItem(foundProduct);
+                    System.out.println(foundProduct.getName() + " has been added to your cart.");
+                }else {
+                    System.out.println("That item ID is invalid and could not be added to the cart.");
+                }
+                printMenu();
             }else if (optedInt == 3) {
                 System.out.println("Enter the item to search for:");
                 String userEnteredItem = getNextStringLineFromUser();
