@@ -21,7 +21,8 @@ public class Shoprunner {
                 products.add(new Product(4, "The Three Elven Towers", 49.99, "Journey to a land of ancient elven magic and mayhem in three rival cities to stop the recovery of an ancient weapon . . . and an ancient evil."));
 
         Shop shop = new Shop("5e Bookstore", products);
-        Menu menu = new Menu(shop, new Scanner(new InputStreamReader(System.in, StandardCharsets.UTF_8)));
+        Cart cart = new Cart();
+        Menu menu = new Menu(shop, cart, new Scanner(new InputStreamReader(System.in, StandardCharsets.UTF_8)));
 
         menu.greet();
         menu.executeMenu();

@@ -4,10 +4,12 @@ public class Menu {
     private String[] menuOptions = {"Exit", "List Products", "Buy Product", "Find Product", "Show Cart", "Checkout"};
     private Scanner scanner;
     private Shop shop;
+    private Cart cart;
 
 
-    public Menu(Shop shop, Scanner scanner) {
+    public Menu(Shop shop, Cart cart, Scanner scanner) {
         this.shop = shop;
+        this.cart = cart;
         this.scanner = scanner;
     }
 
@@ -15,19 +17,23 @@ public class Menu {
         printMenu();
         int optedInt = getNextIntFromUser();
 
-        if (optedInt == 1) {
-            shop.printProducts();
-            printMenu();
-        }else if (optedInt == 3){
-            System.out.println("Enter the item to search for:");
-            String userEnteredItem = getNextStringLineFromUser();
-            int foundItem = shop.findProduct(userEnteredItem);
-            if (foundItem != -1) {
-                System.out.println(userEnteredItem + " was found and its product id is " + foundItem);
-            }else{
-                System.out.println("That product was not found");
+        while (optedInt != 0){
+
+            if (optedInt == 1) {
+                shop.printProducts();
+                printMenu();
+            }else if (optedInt == 3) {
+                System.out.println("Enter the item to search for:");
+                String userEnteredItem = getNextStringLineFromUser();
+                int foundItem = shop.findProduct(userEnteredItem);
+                if (foundItem != -1) {
+                    System.out.println(userEnteredItem + " was found and its product id is " + foundItem);
+                } else {
+                    System.out.println("That product was not found");
+                }
+                printMenu();
             }
-            printMenu();
+            optedInt = getNextIntFromUser();
         }
             exit();
     }
